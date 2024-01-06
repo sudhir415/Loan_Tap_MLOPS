@@ -1,0 +1,12 @@
+pandas
+numpy
+seaborn
+matplotlib
+scikit-learn
+catboost
+xgboost
+Flask
+
+
+# this is -e. is it necessary?
+# ``` yes it is necessary. it is the path to the directory where the setup.py file is located.``` 
