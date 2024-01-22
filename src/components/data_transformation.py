@@ -23,7 +23,9 @@ from src.utils import save_object
 from src.components.data_engineering import DataEngineeringConfig
 from src.components.data_engineering import DataEngineering
 from src.components.data_ingestion import DataIngestionConfig
-from src.components.data_ingestion import DataIngestion
+from src.components.data_ingestion import DataIngestion 
+
+logging.basicConfig(filename='logs/data_transformation.log', level=logging.INFO) 
 
 @dataclass
 class DataTransformationConfig:
@@ -88,7 +90,7 @@ class DataTransformation:
             test_df = test_data.drop(columns=['loan_status'], axis=1) 
             print(train_df.shape)
             print(test_df.shape)
-            print(train_df.head())
+            # print(train_df.head())
             logging.info("Train and test data is created")
             target_train_df = train_data['loan_status'] 
             target_test_df = test_data['loan_status']
@@ -113,25 +115,20 @@ class DataTransformation:
             logging.info("Shape of the train_arr: {}".format(train_arr.shape))
             logging.info("train arr and test arr is created")
 
-            save_object(preprocessor_obj, self.config.preprocessor_obj_file_path) 
+            # save_object(preprocessor_obj, self.config.preprocessor_obj_file_path) 
 
             logging.info("Preprocessor object is saved in the path: {}".format(self.config.preprocessor_obj_file_path)) 
 
-            return (train_arr, test_arr, self.config.preprocessor_obj_file_path) 
+            return (train_arr, test_arr) 
         
         except Exception as e:
             raise CustomException(e, sys)  
         
 
 
-# if __name__ == "__main__": 
-#     logging.info("Data Transformation has been started")
-#     data_transformation_config = DataTransformationConfig()
-#     data_transformation = DataTransformation(config=data_transformation_config)
-#     data_transformation.transform_data('artifacts/train_data.csv', 'artifacts/test_data.csv', 'artifacts/raw_data.csv')
-#     logging.info("Data Transformation has been ended")
-
         
+
+    
 
 
 

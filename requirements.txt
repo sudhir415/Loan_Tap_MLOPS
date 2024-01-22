@@ -2,11 +2,11 @@ pandas
 numpy
 seaborn
 matplotlib
-scikit-learn
-catboost
+scikit-learn>=0.22.0 
 xgboost
 Flask
-
+dill
+-e .
 
 # this is -e. is it necessary?
 # ``` yes it is necessary. it is the path to the directory where the setup.py file is located.``` 

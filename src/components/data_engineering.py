@@ -1,17 +1,17 @@
 import os
 import sys
 from dataclasses import dataclass
+from src.exception import CustomException
+from src.logger import logging
 
 import pandas as pd
 import numpy as np
-from sklearn.preprocessing import (MinMaxScaler, StandardScaler, RobustScaler, OneHotEncoder, OrdinalEncoder, LabelEncoder)
+from sklearn.preprocessing import (StandardScaler, RobustScaler, OneHotEncoder, OrdinalEncoder, LabelEncoder)
 from sklearn.compose import ColumnTransformer
 from sklearn.impute import SimpleImputer
 from sklearn.pipeline import Pipeline
 from sklearn.model_selection import train_test_split
 
-from src.exception import CustomException
-from src.logger import logging
 
 
 from src.utils import save_object 
@@ -136,7 +136,7 @@ class DataEngineering:
             
             logging.info("Outliers removed from the data")
 
-            save_object(self.df, self.config.preprocessor_obj_file_path)
+            # save_object(self.df, self.config.preprocessor_obj_file_path)
 
             return self.df 
 
@@ -144,16 +144,12 @@ class DataEngineering:
             raise CustomException(e, sys) 
         
 
-
-# if __name__ == "__main__":
-#     logging.info("Data Engineering has been started")
-#     data_engineering_config = DataEngineeringConfig()
-#     data_engineering = DataEngineering(config=data_engineering_config)
-#     data_engineering.preprocess_data('artifacts/raw_data.csv')
-#     logging.info("Data Engineering has been ended")
-        
- 
-        
+if __name__ == "__main__":
+    logging.info("Data Engineering has been started")
+    data_engineering_config = DataEngineeringConfig()
+    data_engineering = DataEngineering(config=data_engineering_config)
+    data_engineering.preprocess_data('artifacts/raw_data.csv')
+    logging.info("Data Engineering has been ended")
 
 
         

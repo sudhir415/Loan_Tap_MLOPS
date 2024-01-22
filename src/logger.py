@@ -1,6 +1,7 @@
 import logging
 import os
 from datetime import datetime 
+import sys
 
 LOG_FILE=f"{datetime.now().strftime('%m_%d_%Y_%H_%M_%S')}.log" 
 LOG_PATH=os.path.join(os.getcwd(),"logs", LOG_FILE)
@@ -12,7 +13,7 @@ logging.basicConfig(filename=LOG_FILE_PATH, format='%(asctime)s %(levelname)s %(
                     level=logging.INFO) 
                 
 
-# if __name__ == "__main__":
-#     logging.info("Logging has been started")
-#     logging.info("Logging has been ended")
+if __name__ == "__main__":
+    logging.info("Logging has been started")
+    logging.info("Logging has been ended")
 
