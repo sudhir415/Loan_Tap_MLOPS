@@ -48,10 +48,10 @@ class DataIngestion:
             raise CustomException(e)
         
     
-if __name__ == "__main__":
-    data_ingestion_config = DataIngestionConfig()
-    data_ingestion = DataIngestion(config=data_ingestion_config)
-    data_ingestion.get_data() 
+# if __name__ == "__main__":
+#     data_ingestion_config = DataIngestionConfig()
+#     data_ingestion = DataIngestion(config=data_ingestion_config)
+#     data_ingestion.get_data() 
 
 
                
