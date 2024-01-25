@@ -99,6 +99,8 @@ class ModelTrainer:
                     file_path=self.config.trained_model_file_path             
             )
 
+        
+
          except Exception as e:
             logging.info("Exception occured at model training")
             raise CustomException(e, sys)
