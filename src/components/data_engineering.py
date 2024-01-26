@@ -123,20 +123,20 @@ class DataEngineering:
 
             # Write a code to remove outliers from data for all the numerical columns
             logging.info("Removing outliers from the data")
-            def remove_outlier(df_1 = self.df):
-                numerical_data = df_1.select_dtypes(include='number')
-                for column in numerical_data.columns:
-                    q1 = df_1[column].quantile(0.25)
-                    q3 = df_1[column].quantile(0.75)
-                    iqr = q3 - q1
-                    lower_bound  = q1 - (1.5 * iqr)
-                    upper_bound = q3 + (1.5 * iqr)
-                    df_1 = df_1.loc[(df_1[column] > lower_bound) & (df_1[column] < upper_bound)]
-                return df_1    
+            # def remove_outlier(df_1 = self.df):
+            #     numerical_data = df_1.select_dtypes(include='number')
+            #     for column in numerical_data.columns:
+            #         q1 = df_1[column].quantile(0.25)
+            #         q3 = df_1[column].quantile(0.75)
+            #         iqr = q3 - q1
+            #         lower_bound  = q1 - (1.5 * iqr)
+            #         upper_bound = q3 + (1.5 * iqr)
+            #         df_1 = df_1.loc[(df_1[column] > lower_bound) & (df_1[column] < upper_bound)]
+            #     return df_1    
             
             logging.info("Outliers removed from the data")
 
-            # save_object(self.df, self.config.preprocessor_obj_file_path)
+            save_object(self.config.preprocessor_obj_file_path, self.df)
 
             return self.df 
 
