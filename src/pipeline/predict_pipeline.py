@@ -9,16 +9,23 @@ class PredictPipeline:
     def __init__(self) -> None:
         pass
     
-    def predict(self,features):
+    def predict(self,new_data):
         try:
+            preprocessor_path='artifacts\dataengineering.pkl'
+            transform_path='artifacts\preprocessor.pkl'
             model_path='artifacts\model.pkl'
-            preprocessor_path='artifacts\preprocessor.pkl'
-            model=load_object(file_path=model_path)
-            preprocessor=load_object(file_path=preprocessor_path)
-            data_scaled=preprocessor.transform(features)
-            preds=model.predict(data_scaled)
+
+            data_preprocessor=load_object(file_path=preprocessor_path)
+            data_transform=load_object(file_path=transform_path)
+            data_model = load_object(file_path=model_path)
             
-            return preds
+            preprocessed_data = data_preprocessor.preprocess_data(new_data)
+            transformed_data = data_transform.transform(preprocessed_data)
+            predictions = data_model.predict(transformed_data)
+
+            preds = pd.DataFrame(predictions, columns=['predictions'])
+            # print(preds)
+            return predictions
         except Exception as e:
             raise CustomException(e,sys)
          
